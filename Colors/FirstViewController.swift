@@ -115,10 +115,12 @@ class FirstViewController: UICollectionViewController {
         
         let alert = UIAlertController(title: systemColor.name ?? "NAME", message: "\(color.name)\nR \(ci.red) B \(ci.blue) G \(ci.green) A \(ci.alpha)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Set as Background", style: .default, handler: { _ in
+            self.collectionView.backgroundColor = systemColor
+        }))
+        
         
         self.present(alert, animated: true, completion: nil)
-        
-        self.collectionView.backgroundColor = colorList[indexPath.section][indexPath.row]
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -158,7 +160,8 @@ class ColorCell: UICollectionViewCell {
         name.translatesAutoresizingMaskIntoConstraints = false
         colorView.translatesAutoresizingMaskIntoConstraints = false
         
-        name.textColor = .red
+        name.textColor = .white
+        name.backgroundColor = .black
         name.adjustsFontSizeToFitWidth = true
         name.textAlignment = .center
         name.baselineAdjustment = .alignBaselines
